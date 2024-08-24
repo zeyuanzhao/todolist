@@ -1,4 +1,6 @@
+import { createList, getLists } from "@/api/sql";
 import ListCard from "@/components/ListCard";
+import useLoader from "@/hooks/useLoader";
 import { List } from "@/interfaces";
 import { FlashList } from "@shopify/flash-list";
 import { StatusBar } from "expo-status-bar";
@@ -6,13 +8,7 @@ import { FlatList, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Index = () => {
-  const data: List[] = [
-    { id: 0, title: "List 0", length: 10 },
-    { id: 1, title: "List 1", length: 20 },
-    { id: 2, title: "List 2", length: 30 },
-    { id: 3, title: "List 3", length: 40 },
-    { id: 4, title: "List 4", length: 50 },
-  ];
+  const { data: lists, isLoading, refetch } = useLoader(getLists);
 
   return (
     <SafeAreaView className="h-full">
@@ -22,7 +18,7 @@ const Index = () => {
         </View>
         <View className="px-4">
           <FlatList
-            data={data}
+            data={lists}
             renderItem={({ item }) => <ListCard item={item} />}
             numColumns={2}
             contentContainerStyle={{

@@ -1,9 +1,14 @@
+import { List } from "@/interfaces";
 import * as SQLite from "expo-sqlite";
 
 let db: SQLite.SQLiteDatabase;
 
-export const initDatabase = async () => {
-  if (db === null) db = await SQLite.openDatabaseAsync("todolist.db");
+export const initializeDatabase = async () => {
+  // check if db is not initialized
+  if (!db) {
+    db = await SQLite.openDatabaseAsync("todolist.db");
+  }
+
   return db;
 };
 
@@ -20,7 +25,7 @@ export const createList = async (
   emoji: string,
   type: string
 ) => {
-  return db.runAsync(
+  return await db.runAsync(
     "INSERT INTO lists (title, description, length, emoji, type) VALUES (?, ?, ?, ?, ?)",
     title,
     description,
@@ -31,5 +36,9 @@ export const createList = async (
 };
 
 export const getList = async (id: number) => {
-  return db.getFirstAsync("SELECT * FROM lists WHERE id = ?", id);
+  return await db.getFirstAsync("SELECT * FROM lists WHERE id = ?", id);
+};
+
+export const getLists = async (): Promise<List[]> => {
+  return await db.getAllAsync("SELECT * FROM lists");
 };
