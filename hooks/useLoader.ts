@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Alert } from "react-native";
 
-const useLoader = (f: () => any) => {
+const useLoader = (f: () => any): ReturnType<typeof f> => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
