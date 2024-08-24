@@ -7,26 +7,33 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const Index = () => {
   const data: List[] = [
-    { title: "Item 1", description: "Description 1" },
-    { title: "Item 2", description: "Description 2" },
-    { title: "Item 3", description: "Description 3" },
-    { title: "Item 4", description: "Description 4" },
-    { title: "Item 5", description: "Description 5" },
-    { title: "Item 6", description: "Description 6" },
-    { title: "Item 7", description: "Description 7" },
-    { title: "Item 8", description: "Description 8" },
-    { title: "Item 9", description: "Description 9" },
-    { title: "Item 10", description: "Description 10" },
+    { id: 0, title: "List 0", length: 10 },
+    { id: 1, title: "List 1", length: 20 },
+    { id: 2, title: "List 2", length: 30 },
+    { id: 3, title: "List 3", length: 40 },
+    { id: 4, title: "List 4", length: 50 },
   ];
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className="h-full">
       <View>
-        <FlatList
-          data={data}
-          renderItem={({ item }) => <ListCard item={item} />}
-          numColumns={2}
-        />
+        <View className="my-8 px-4">
+          <Text className="text-3xl">My Lists</Text>
+        </View>
+        <View className="px-4">
+          <FlatList
+            data={data}
+            renderItem={({ item }) => <ListCard item={item} />}
+            numColumns={2}
+            contentContainerStyle={{
+              alignItems: "center",
+              gap: 16,
+            }}
+            columnWrapperStyle={{
+              gap: 16,
+            }}
+          />
+        </View>
       </View>
       <StatusBar style="dark" />
     </SafeAreaView>
