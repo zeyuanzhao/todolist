@@ -9,7 +9,13 @@ import { FlatList, Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Index = () => {
-  const { data: lists, isLoading, refetch } = useLoader(getLists);
+  const {
+    data: lists,
+    isLoading,
+    refetch,
+  }: { data: List[]; isLoading: boolean; refetch: () => List[] } = useLoader(
+    getLists
+  );
 
   return (
     <SafeAreaView className="h-full">

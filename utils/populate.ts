@@ -1,4 +1,4 @@
-import { createList } from "@/api/sql";
+import { createItem, createList } from "@/api/sql";
 
 export const populateLists = async () => {
   for (let i = 0; i < 5; i++) {
@@ -6,4 +6,8 @@ export const populateLists = async () => {
   }
 };
 
-export const populateItems = async () => {};
+export const populateItems = async (list_id: number) => {
+  for (let i = 0; i < 5; i++) {
+    await createItem(list_id, "task", "Item " + i);
+  }
+};

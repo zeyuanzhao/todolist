@@ -1,4 +1,4 @@
-import { List } from "@/interfaces";
+import { Item, List } from "@/interfaces";
 import * as SQLite from "expo-sqlite";
 
 let db: SQLite.SQLiteDatabase;
@@ -66,6 +66,6 @@ export const createItem = async (
   );
 };
 
-export const getItems = async (list_id: number) => {
+export const getItems = async (list_id: number): Promise<Item[]> => {
   return await db.getAllAsync("SELECT * FROM items WHERE list_id = ?", list_id);
 };
