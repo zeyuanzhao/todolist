@@ -4,7 +4,6 @@ import * as SQLite from "expo-sqlite";
 let db: SQLite.SQLiteDatabase;
 
 export const initializeDatabase = async () => {
-  // check if db is not initialized
   if (!db) {
     db = await SQLite.openDatabaseAsync("todolist.db");
   }
@@ -15,6 +14,12 @@ export const initializeDatabase = async () => {
 export const createListTable = async () => {
   await db.execAsync(`
     CREATE TABLE IF NOT EXISTS lists (id INTEGER PRIMARY KEY NOT NULL, title TEXT NOT NULL, description TEXT NOT NULL, length INTEGER NOT NULL, emoji TEXT NOT NULL, type TEXT NOT NULL);
+  `);
+};
+
+export const createItemsTable = async () => {
+  await db.execAsync(`
+    CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY NOT NULL, list_id INTEGER NOT NULL, type TEXT NOT NULL, content TEXT NOT NULL, completed INTEGER DEFAULT 0, created INTEGER DEFAULT strftime("%s", CURRENT_TIME), FOREIGN KEY(list_id) REFERENCES lists(id));
   `);
 };
 

@@ -1,4 +1,8 @@
-import { createListTable, initializeDatabase } from "@/api/sql";
+import {
+  createItemsTable,
+  createListTable,
+  initializeDatabase,
+} from "@/api/sql";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect, useState } from "react";
 
@@ -12,6 +16,7 @@ export default function RootLayout() {
       try {
         await initializeDatabase();
         await createListTable();
+        await createItemsTable();
       } catch (error) {
         console.error(error);
       } finally {
