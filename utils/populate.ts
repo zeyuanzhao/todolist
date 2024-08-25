@@ -6,8 +6,8 @@ export const populateLists = async () => {
   }
 };
 
-export const populateItems = async (list_id: number) => {
+export const populateItems = async (listId: number) => {
   for (let i = 0; i < 5; i++) {
-    await createItem(list_id, "task", "Item " + i);
+    await createItem(listId, "task", "Item " + i);
   }
 };

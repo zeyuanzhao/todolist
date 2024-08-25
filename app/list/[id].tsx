@@ -1,4 +1,5 @@
 import { getItems, getList } from "@/api/sql";
+import ItemRow from "@/components/ItemRow";
 import useLoader from "@/hooks/useLoader";
 import { Item, List } from "@/interfaces";
 import { populateItems } from "@/utils/populate";
@@ -58,7 +59,7 @@ const ListPage = () => {
           <View>
             <FlatList
               data={items}
-              renderItem={({ item }) => <Text>{item.content}</Text>}
+              renderItem={({ item }) => <ItemRow item={item} />}
             />
           </View>
         </View>

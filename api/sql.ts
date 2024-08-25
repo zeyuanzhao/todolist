@@ -24,7 +24,7 @@ export const createListTable = async () => {
 
 export const createItemsTable = async () => {
   await db.execAsync(`
-    CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY NOT NULL, list_id INTEGER NOT NULL, type TEXT NOT NULL, content TEXT NOT NULL, completed INTEGER DEFAULT 0, created INTEGER DEFAULT (strftime('%s', 'now')), FOREIGN KEY(list_id) REFERENCES lists(id));
+    CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY NOT NULL, listId INTEGER NOT NULL, type TEXT NOT NULL, content TEXT NOT NULL, completed INTEGER DEFAULT 0, created INTEGER DEFAULT (strftime('%s', 'now')), FOREIGN KEY(listId) REFERENCES lists(id));
   `);
 };
 
@@ -54,18 +54,18 @@ export const getLists = async (): Promise<List[]> => {
 };
 
 export const createItem = async (
-  list_id: number,
+  listId: number,
   type: string,
   content: string
 ) => {
   return await db.runAsync(
-    "INSERT INTO items (list_id, type, content) VALUES (?, ?, ?)",
-    list_id,
+    "INSERT INTO items (listId, type, content) VALUES (?, ?, ?)",
+    listId,
     type,
     content
   );
 };
 
-export const getItems = async (list_id: number): Promise<Item[]> => {
-  return await db.getAllAsync("SELECT * FROM items WHERE list_id = ?", list_id);
+export const getItems = async (listId: number): Promise<Item[]> => {
+  return await db.getAllAsync("SELECT * FROM items WHERE listId = ?", listId);
 };

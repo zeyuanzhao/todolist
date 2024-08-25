@@ -9,7 +9,7 @@ export interface List {
 
 export interface Item {
   id: number;
-  list_id: number;
+  listId: number;
   type: string;
   content: string;
   completed: boolean;
