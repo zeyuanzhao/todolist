@@ -65,3 +65,7 @@ export const createItem = async (
     content
   );
 };
+
+export const getItems = async (list_id: number) => {
+  return await db.getAllAsync("SELECT * FROM items WHERE list_id = ?", list_id);
+};
