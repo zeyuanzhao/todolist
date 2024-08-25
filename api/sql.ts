@@ -52,3 +52,16 @@ export const getList = async (id: number) => {
 export const getLists = async (): Promise<List[]> => {
   return await db.getAllAsync("SELECT * FROM lists");
 };
+
+export const createItem = async (
+  list_id: number,
+  type: string,
+  content: string
+) => {
+  return await db.runAsync(
+    "INSERT INTO items (list_id, type, content) VALUES (?, ?, ?)",
+    list_id,
+    type,
+    content
+  );
+};

@@ -6,3 +6,12 @@ export interface List {
   emoji: string;
   type: string;
 }
+
+export interface Item {
+  id: number;
+  list_id: number;
+  type: string;
+  content: string;
+  completed: boolean;
+  created: number;
+}
