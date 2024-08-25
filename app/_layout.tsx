@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
+const RootLayout = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -35,6 +35,9 @@ export default function RootLayout() {
   return (
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="list/[id]" options={{ headerShown: false }} />
     </Stack>
   );
-}
+};
+
+export default RootLayout;
