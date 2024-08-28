@@ -53,6 +53,7 @@ const Index = () => {
             columnWrapperStyle={{
               gap: 16,
             }}
+            className="h-full"
           />
         </View>
       </View>
