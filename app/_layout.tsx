@@ -36,6 +36,10 @@ const RootLayout = () => {
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="list/[id]" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="create"
+        options={{ headerShown: false, presentation: "modal" }}
+      />
     </Stack>
   );
 };

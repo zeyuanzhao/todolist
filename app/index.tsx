@@ -4,6 +4,7 @@ import useLoader from "@/hooks/useLoader";
 import { List } from "@/interfaces";
 import { populateLists } from "@/utils/populate";
 import { FlashList } from "@shopify/flash-list";
+import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { FlatList, Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -31,6 +32,12 @@ const Index = () => {
             </Pressable>
             <Pressable onPress={populateLists} className="border mb-4">
               <Text>Populate Lists</Text>
+            </Pressable>
+            <Pressable
+              onPress={() => router.push("/create")}
+              className="border mb-4"
+            >
+              <Text>Create</Text>
             </Pressable>
           </View>
         </View>
