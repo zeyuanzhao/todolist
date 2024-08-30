@@ -1,23 +1,31 @@
+import { Text, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 
-const DropDown = () => {
+const DropDown = ({
+  setValue,
+  title,
+}: {
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+  title: string;
+}) => {
   const data = [
-    { label: "Item 1", value: "1" },
-    { label: "Item 2", value: "2" },
-    { label: "Item 3", value: "3" },
-    { label: "Item 4", value: "4" },
-    { label: "Item 5", value: "5" },
-    { label: "Item 6", value: "6" },
-    { label: "Item 7", value: "7" },
-    { label: "Item 8", value: "8" },
+    { label: "List", value: "list" },
+    { label: "Grid", value: "grid" },
   ];
   return (
-    <Dropdown
-      data={data}
-      labelField="label"
-      valueField="value"
-      onChange={function (item: { label: string; value: string }): void {}}
-    />
+    <View className="mt-4">
+      {title && <Text className="mb-2">{title}</Text>}
+      <Dropdown
+        data={data}
+        labelField="label"
+        valueField="value"
+        onChange={(item: { label: string; value: string }) => {
+          setValue(item.value);
+        }}
+        placeholder="Select a type"
+        style={{ borderWidth: 1, borderColor: "black" }}
+      />
+    </View>
   );
 };
 

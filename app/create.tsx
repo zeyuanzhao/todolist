@@ -1,10 +1,13 @@
 import DropDown from "@/components/DropDown";
 import TextField from "@/components/TextField";
 import { StatusBar } from "expo-status-bar";
+import { useState } from "react";
 import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Create = () => {
+  const [type, setType] = useState("list");
+
   return (
     <SafeAreaView>
       <View>
@@ -13,7 +16,7 @@ const Create = () => {
           <TextField title="Title" />
           <TextField title="Description" />
           <TextField title="Emoji" />
-          <DropDown />
+          <DropDown title="Type" setValue={setType} />
         </View>
       </View>
       <StatusBar style="light" />
