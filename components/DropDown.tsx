@@ -2,12 +2,14 @@ import { Text, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 
 const DropDown = ({
-  setValue,
   title,
+  setValue,
+  value,
   containerStyle,
 }: {
-  setValue: React.Dispatch<React.SetStateAction<string>>;
   title: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+  value: string;
   containerStyle?: string;
 }) => {
   const data = [
@@ -25,6 +27,7 @@ const DropDown = ({
           setValue(item.value);
         }}
         placeholder="Select a type"
+        value={value}
         style={{ borderWidth: 1, borderColor: "black" }}
       />
     </View>
