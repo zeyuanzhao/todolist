@@ -1,6 +1,7 @@
 import { CreateListForm } from "@/interfaces";
 import { Alert } from "react-native";
 import { createList } from "./sql";
+import { router } from "expo-router";
 
 export const handleCreateList = async (
   createListForm: CreateListForm,
@@ -25,14 +26,14 @@ export const handleCreateList = async (
       createListForm.emoji,
       createListForm.type
     );
-  } catch (e) {
-    if (e instanceof Error) Alert.alert("Error", e.message);
-  } finally {
     setCreateForm({
       title: "",
       description: "",
       emoji: "",
       type: "",
     });
+    router.back();
+  } catch (e) {
+    if (e instanceof Error) Alert.alert("Error", e.message);
   }
 };

@@ -1,11 +1,11 @@
 import { getLists, resetDatabase } from "@/api/sql";
 import ListCard from "@/components/ListCard";
-import { Colors } from "@/constants/examples/Colors";
 import useLoader from "@/hooks/useLoader";
 import { List } from "@/interfaces";
 import { populateLists } from "@/utils/populate";
-import { router } from "expo-router";
+import { router, useFocusEffect } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { useCallback } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -22,6 +22,14 @@ const Index = () => {
     refetch,
   }: { data: List[]; isLoading: boolean; refetch: () => List[] } = useLoader(
     getLists
+  );
+
+  useFocusEffect(
+    useCallback(() => {
+      if (!isLoading) {
+        refetch();
+      }
+    }, [])
   );
 
   return (
