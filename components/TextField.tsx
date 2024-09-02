@@ -8,7 +8,7 @@ const TextField = ({
   containerStyle,
 }: {
   value: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
+  setValue: (value: string) => any;
   title?: string;
   containerStyle?: string;
 }) => {

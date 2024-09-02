@@ -3,13 +3,13 @@ import { Dropdown } from "react-native-element-dropdown";
 
 const DropDown = ({
   title,
-  setValue,
   value,
+  setValue,
   containerStyle,
 }: {
   title: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
   value: string;
+  setValue: (value: string) => any;
   containerStyle?: string;
 }) => {
   const data = [
