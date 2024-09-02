@@ -2,6 +2,7 @@ import {
   createItemsTable,
   createListTable,
   initializeDatabase,
+  setUpDatabase,
 } from "@/api/sql";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect, useState } from "react";
@@ -14,9 +15,7 @@ const RootLayout = () => {
   useEffect(() => {
     const initDB = async () => {
       try {
-        await initializeDatabase();
-        await createListTable();
-        await createItemsTable();
+        await setUpDatabase();
       } catch (e) {
         console.error(e);
       } finally {

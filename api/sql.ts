@@ -1,7 +1,14 @@
 import { Item, List } from "@/interfaces";
 import * as SQLite from "expo-sqlite";
+import * as Updates from "expo-updates";
 
 let db: SQLite.SQLiteDatabase;
+
+export const setUpDatabase = async () => {
+  await initializeDatabase();
+  await createListTable();
+  await createItemsTable();
+};
 
 export const initializeDatabase = async () => {
   if (!db) {
@@ -14,6 +21,7 @@ export const initializeDatabase = async () => {
 export const resetDatabase = async () => {
   await db.closeAsync();
   await SQLite.deleteDatabaseAsync("todolist.db");
+  Updates.reloadAsync();
 };
 
 export const createListTable = async () => {
