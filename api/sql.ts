@@ -52,9 +52,10 @@ export const createList = async (
 };
 
 export const getList = async (id: number) => {
-  return await db.getFirstAsync("SELECT * FROM lists WHERE id = ?", id);
-
-  // TODO handle length
+  return await db.getFirstAsync(
+    "SELECT id, title, description, emoji, type, (SELECT COUNT(*) from items where items.listId = lists.id) as length FROM lists WHERE id = ?",
+    id
+  );
 };
 
 export const getLists = async (): Promise<List[]> => {

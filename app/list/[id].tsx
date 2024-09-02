@@ -55,6 +55,7 @@ const ListPage = () => {
               <Text>Description: {list.description}</Text>
               <Text>Emoji: {list.emoji}</Text>
               <Text>Type: {list.type}</Text>
+              <Text>Length: {list.length}</Text>
             </View>
             <View>
               <FlatList
