@@ -52,7 +52,6 @@ const ListPage = () => {
             <Text>{list.id}</Text>
             <Text>{list.title}</Text>
             <Text>{list.description}</Text>
-            <Text>{list.length}</Text>
             <Text>{list.emoji}</Text>
             <Text>{list.type}</Text>
           </View>

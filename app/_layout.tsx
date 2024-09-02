@@ -17,8 +17,8 @@ const RootLayout = () => {
         await initializeDatabase();
         await createListTable();
         await createItemsTable();
-      } catch (error) {
-        console.error(error);
+      } catch (e) {
+        console.error(e);
       } finally {
         SplashScreen.hideAsync();
         setIsLoading(false);

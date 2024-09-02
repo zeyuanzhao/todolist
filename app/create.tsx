@@ -1,24 +1,21 @@
-import { createList } from "@/api/sql";
+import { handleCreateList } from "@/api/list";
 import Button from "@/components/Button";
 import DropDown from "@/components/DropDown";
 import TextField from "@/components/TextField";
+import { CreateListForm } from "@/interfaces";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { Alert, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Create = () => {
-  // const [type, setType] = useState("");
-  // const [title, setTitle] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [emoji, setEmoji] = useState("");
-
-  const [createForm, setCreateForm] = useState({
+  const [createListForm, setCreateForm] = useState<CreateListForm>({
     type: "",
     title: "",
     description: "",
     emoji: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <SafeAreaView>
@@ -27,32 +24,40 @@ const Create = () => {
           <Text className="text-3xl">Create List</Text>
           <TextField
             title="Title"
-            value={createForm.title}
-            setValue={(value) => setCreateForm({ ...createForm, title: value })}
+            value={createListForm.title}
+            setValue={(value) =>
+              setCreateForm({ ...createListForm, title: value })
+            }
             containerStyle="mt-4"
           />
           <TextField
             title="Description"
-            value={createForm.description}
+            value={createListForm.description}
             setValue={(value) =>
-              setCreateForm({ ...createForm, description: value })
+              setCreateForm({ ...createListForm, description: value })
             }
             containerStyle="mt-4"
           />
           <TextField
             title="Emoji"
-            value={createForm.emoji}
-            setValue={(value) => setCreateForm({ ...createForm, emoji: value })}
+            value={createListForm.emoji}
+            setValue={(value) =>
+              setCreateForm({ ...createListForm, emoji: value })
+            }
             containerStyle="mt-4"
           />
           <DropDown
             title="Type"
-            value={createForm.type}
-            setValue={(value) => setCreateForm({ ...createForm, type: value })}
+            value={createListForm.type}
+            setValue={(value) =>
+              setCreateForm({ ...createListForm, type: value })
+            }
             containerStyle="mt-4"
           />
           <Button
-            onPress={() => Alert.alert("Pressed")}
+            onPress={() =>
+              handleCreateList(createListForm, setIsLoading, setCreateForm)
+            }
             title="Create List"
             containerStyle="mt-4"
           />

@@ -11,7 +11,7 @@ const ListCard = ({ item }: { item: List }) => {
       }}
     >
       <Text className="text-lg text-center">{item.title}</Text>
-      <Text className="text-sm text-center">{item.length}</Text>
+      <Text className="text-sm text-center">{item.emoji}</Text>
     </Pressable>
   );
 };

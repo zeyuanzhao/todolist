@@ -18,7 +18,7 @@ export const resetDatabase = async () => {
 
 export const createListTable = async () => {
   await db.execAsync(`
-    CREATE TABLE IF NOT EXISTS lists (id INTEGER PRIMARY KEY NOT NULL, title TEXT NOT NULL, description TEXT NOT NULL, length INTEGER NOT NULL, emoji TEXT NOT NULL, type TEXT NOT NULL);
+    CREATE TABLE IF NOT EXISTS lists (id INTEGER PRIMARY KEY NOT NULL, title TEXT NOT NULL, description TEXT NOT NULL, emoji TEXT NOT NULL, type TEXT NOT NULL);
   `);
 };
 
@@ -31,15 +31,13 @@ export const createItemsTable = async () => {
 export const createList = async (
   title: string,
   description: string,
-  length: number,
   emoji: string,
   type: string
 ) => {
   return await db.runAsync(
-    "INSERT INTO lists (title, description, length, emoji, type) VALUES (?, ?, ?, ?, ?)",
+    "INSERT INTO lists (title, description, emoji, type) VALUES (?, ?, ?, ?)",
     title,
     description,
-    length,
     emoji,
     type
   );
@@ -47,10 +45,14 @@ export const createList = async (
 
 export const getList = async (id: number) => {
   return await db.getFirstAsync("SELECT * FROM lists WHERE id = ?", id);
+
+  // TODO handle length
 };
 
 export const getLists = async (): Promise<List[]> => {
   return await db.getAllAsync("SELECT * FROM lists");
+
+  // TODO handle length
 };
 
 export const createItem = async (
