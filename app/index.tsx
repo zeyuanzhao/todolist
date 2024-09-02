@@ -1,12 +1,18 @@
-import { createList, getLists, resetDatabase } from "@/api/sql";
+import { getLists, resetDatabase } from "@/api/sql";
 import ListCard from "@/components/ListCard";
+import { Colors } from "@/constants/examples/Colors";
 import useLoader from "@/hooks/useLoader";
 import { List } from "@/interfaces";
 import { populateLists } from "@/utils/populate";
-import { FlashList } from "@shopify/flash-list";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { FlatList, Pressable, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  Pressable,
+  Text,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Index = () => {
@@ -54,6 +60,13 @@ const Index = () => {
               gap: 16,
             }}
             className="h-full"
+            ListEmptyComponent={
+              isLoading ? (
+                <ActivityIndicator animating={true} />
+              ) : (
+                <Text>No lists</Text>
+              )
+            }
           />
         </View>
       </View>
