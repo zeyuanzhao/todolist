@@ -58,9 +58,9 @@ export const getList = async (id: number) => {
 };
 
 export const getLists = async (): Promise<List[]> => {
-  return await db.getAllAsync("SELECT * FROM lists");
-
-  // TODO handle length
+  return await db.getAllAsync(
+    "SELECT id, title, description, emoji, type, (SELECT COUNT(*) from items where items.listId = lists.id) as length FROM lists"
+  );
 };
 
 export const createItem = async (

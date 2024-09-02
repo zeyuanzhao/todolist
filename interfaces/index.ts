@@ -4,6 +4,7 @@ export interface List {
   description: string;
   emoji: string;
   type: string;
+  length: number;
 }
 
 export interface Item {
