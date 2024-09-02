@@ -1,9 +1,4 @@
-import {
-  createItemsTable,
-  createListTable,
-  initializeDatabase,
-  setUpDatabase,
-} from "@/api/sql";
+import { setUpDatabase } from "@/api/sql";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect, useState } from "react";
 

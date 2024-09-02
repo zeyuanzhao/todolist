@@ -26,9 +26,7 @@ const Index = () => {
 
   useFocusEffect(
     useCallback(() => {
-      if (!isLoading) {
-        refetch();
-      }
+      refetch();
     }, [])
   );
 

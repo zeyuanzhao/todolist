@@ -3,7 +3,7 @@ import { Alert } from "react-native";
 
 const useLoader = (f: () => any): ReturnType<typeof f> => {
   const [data, setData] = useState();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
     setIsLoading(true);
