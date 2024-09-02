@@ -35,19 +35,19 @@ const Index = () => {
       <View>
         <View className="my-8 px-4">
           <Text className="text-3xl">My Lists</Text>
-          <View className="flex flex-row justify-between">
-            <Pressable onPress={resetDatabase} className="border mb-4">
+          <View className="flex flex-row justify-between mb-4">
+            <Pressable onPress={resetDatabase} className="border">
               <Text>Reset DB</Text>
             </Pressable>
-            <Pressable onPress={refetch} className="border mb-4">
+            <Pressable onPress={refetch} className="border">
               <Text>Refresh</Text>
             </Pressable>
-            <Pressable onPress={populateLists} className="border mb-4">
+            <Pressable onPress={populateLists} className="border">
               <Text>Populate Lists</Text>
             </Pressable>
             <Pressable
               onPress={() => router.push("/create")}
-              className="border mb-4"
+              className="border"
             >
               <Text>Create</Text>
             </Pressable>
