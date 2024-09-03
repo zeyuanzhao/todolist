@@ -27,6 +27,7 @@ const Index = () => {
   useFocusEffect(
     useCallback(() => {
       refetch();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
   );
 

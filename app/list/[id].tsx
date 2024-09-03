@@ -122,7 +122,15 @@ const ListPage = () => {
           keyboardBlurBehavior="restore"
         >
           <BottomSheetView>
-            <Text className="text-xl">Add Item</Text>
+            <View className="flex flex-row items-center justify-between ">
+              <Text className="text-xl">Add Item</Text>
+              <Button
+                onPress={() => {
+                  bottomSheetRef.current?.close();
+                }}
+                title={"Close"}
+              />
+            </View>
             <DropDown
               title="Type"
               value={createItemForm.type}
