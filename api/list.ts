@@ -35,5 +35,7 @@ export const handleCreateList = async (
     router.back();
   } catch (e) {
     if (e instanceof Error) Alert.alert("Error", e.message);
+  } finally {
+    setIsLoading(false);
   }
 };

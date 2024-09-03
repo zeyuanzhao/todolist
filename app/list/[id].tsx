@@ -38,6 +38,8 @@ const ListPage = () => {
     content: "",
   });
 
+  const [isCreateLoading, setIsCreateLoading] = useState(false);
+
   const typeDropdownData = [{ label: "Text", value: "text" }];
 
   return (
@@ -120,7 +122,14 @@ const ListPage = () => {
               containerStyle="mt-2"
             />
             <Button
-              onPress={() => handleCreateItem()}
+              onPress={() =>
+                handleCreateItem(
+                  list.id,
+                  createItemForm,
+                  setIsCreateLoading,
+                  setCreateItemForm
+                )
+              }
               title="Create Item"
               containerStyle="mt-6"
             />
