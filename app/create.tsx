@@ -66,6 +66,7 @@ const Create = () => {
             }
             title="Create List"
             containerStyle="mt-4"
+            isDisabled={isLoading}
           />
         </View>
       </View>

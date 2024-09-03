@@ -1,6 +1,6 @@
 import { List } from "@/interfaces";
 import { router } from "expo-router";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, Text } from "react-native";
 
 const ListCard = ({ item }: { item: List }) => {
   return (

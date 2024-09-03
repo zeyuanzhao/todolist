@@ -1,17 +1,10 @@
-import { createItem, getItems, getList } from "@/api/sql";
+import { getItems, getList } from "@/api/sql";
 import ItemRow from "@/components/ItemRow";
 import useLoader from "@/hooks/useLoader";
 import { Item, List } from "@/interfaces";
 import { populateItems } from "@/utils/populate";
 import { router, useLocalSearchParams } from "expo-router";
-import {
-  FlatList,
-  KeyboardAvoidingView,
-  Platform,
-  Pressable,
-  Text,
-  View,
-} from "react-native";
+import { FlatList, Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { useRef, useState } from "react";
@@ -146,6 +139,7 @@ const ListPage = () => {
               }
               title="Create Item"
               containerStyle="mt-6"
+              isDisabled={isCreateLoading}
             />
           </BottomSheetView>
         </BottomSheet>
