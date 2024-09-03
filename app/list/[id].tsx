@@ -10,6 +10,8 @@ import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { useRef, useState } from "react";
 import TextField from "@/components/TextField";
 import DropDown from "@/components/DropDown";
+import Button from "@/components/Button";
+import { handleCreateItem } from "@/api/item";
 
 const ListPage = () => {
   const id = Number(useLocalSearchParams().id);
@@ -116,6 +118,11 @@ const ListPage = () => {
                 setCreateItemForm({ ...createItemForm, content: value })
               }
               containerStyle="mt-2"
+            />
+            <Button
+              onPress={() => handleCreateItem()}
+              title="Create Item"
+              containerStyle="mt-6"
             />
           </BottomSheetView>
         </BottomSheet>

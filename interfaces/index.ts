@@ -22,3 +22,8 @@ export interface CreateListForm {
   emoji: string;
   type: string;
 }
+
+export interface CreateItemForm {
+  type: string;
+  content: string;
+}
