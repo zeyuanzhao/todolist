@@ -15,18 +15,21 @@ const TextField = ({
   containerStyle?: string;
   bottomSheet?: boolean;
 }) => {
+  const inputStyle = "border-0.5 p-1 rounded-md text-[16px]";
+
   return (
     <View className={containerStyle}>
       {title && <Text className="mb-2">{title}</Text>}
       {bottomSheet ? (
-        <View className="border mt">
+        <View className={inputStyle}>
           <BottomSheetTextInput value={value} onChangeText={setValue} />
         </View>
       ) : (
         <TextInput
-          className="border mt"
+          className={inputStyle}
           value={value}
           onChangeText={setValue}
+          // style={{ fontSize: 80 }}
         />
       )}
     </View>

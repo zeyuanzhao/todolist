@@ -26,7 +26,13 @@ const DropDown = ({
         }}
         placeholder="Select a type"
         value={value}
-        style={{ borderWidth: 1, borderColor: "black" }}
+        style={{
+          borderWidth: 0.25,
+          borderColor: "black",
+          padding: 4,
+          borderRadius: 6,
+        }}
+        selectedTextStyle={{ fontSize: 16 }}
       />
     </View>
   );
