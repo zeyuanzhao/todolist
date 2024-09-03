@@ -48,10 +48,6 @@ const ListPage = () => {
   };
 
   return (
-    // <KeyboardAvoidingView
-    //   behavior={Platform.OS === "ios" ? "padding" : "height"}
-    //   keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
-    // >
     <SafeAreaView>
       <View className="px-4 h-full">
         <View className="flex flex-row justify-between mb-4">
@@ -97,10 +93,11 @@ const ListPage = () => {
               <Text>Type: {list.type}</Text>
               <Text>Length: {list.length}</Text>
             </View>
-            <View>
+            <View className="mt-4">
               <FlatList
                 data={items}
                 renderItem={({ item }) => <ItemRow item={item} />}
+                className="h-full"
               />
             </View>
           </View>
@@ -116,7 +113,7 @@ const ListPage = () => {
           style={{
             paddingHorizontal: 16,
             borderStyle: "solid",
-            borderWidth: 1,
+            borderTopWidth: 1,
           }}
           keyboardBehavior="interactive"
           keyboardBlurBehavior="restore"
@@ -168,7 +165,6 @@ const ListPage = () => {
         </BottomSheet>
       </View>
     </SafeAreaView>
-    // </KeyboardAvoidingView>
   );
 };
 
