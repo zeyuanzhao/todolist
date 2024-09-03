@@ -1,4 +1,4 @@
-import { getItems, getList } from "@/api/sql";
+import { createItem, getItems, getList } from "@/api/sql";
 import ItemRow from "@/components/ItemRow";
 import useLoader from "@/hooks/useLoader";
 import { Item, List } from "@/interfaces";
@@ -7,7 +7,9 @@ import { router, useLocalSearchParams } from "expo-router";
 import { FlatList, Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import TextField from "@/components/TextField";
+import DropDown from "@/components/DropDown";
 
 const ListPage = () => {
   const id = Number(useLocalSearchParams().id);
@@ -28,6 +30,13 @@ const ListPage = () => {
   );
 
   const bottomSheetRef = useRef<BottomSheet>(null);
+
+  const [createItemForm, setCreateItemForm] = useState({
+    type: "",
+    content: "",
+  });
+
+  const typeDropdownData = [{ label: "Text", value: "text" }];
 
   return (
     <SafeAreaView>
@@ -78,7 +87,7 @@ const ListPage = () => {
         <BottomSheet
           ref={bottomSheetRef}
           enablePanDownToClose
-          snapPoints={["25%"]}
+          snapPoints={["30%"]}
           index={-1}
           backgroundStyle={{
             backgroundColor: "",
@@ -90,7 +99,24 @@ const ListPage = () => {
           }}
         >
           <BottomSheetView>
-            <Text>Bottom Sheet Content</Text>
+            <Text className="text-xl">Add Item</Text>
+            <DropDown
+              title="Type"
+              value={createItemForm.type}
+              setValue={(value) =>
+                setCreateItemForm({ ...createItemForm, type: value })
+              }
+              containerStyle="mt-2"
+              data={typeDropdownData}
+            />
+            <TextField
+              title="Content"
+              value={createItemForm.content}
+              setValue={(value) =>
+                setCreateItemForm({ ...createItemForm, content: value })
+              }
+              containerStyle="mt-2"
+            />
           </BottomSheetView>
         </BottomSheet>
       </View>

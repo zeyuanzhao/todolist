@@ -9,13 +9,18 @@ import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Create = () => {
-  const [createListForm, setCreateForm] = useState<CreateListForm>({
+  const [createListForm, setCreateListForm] = useState<CreateListForm>({
     type: "",
     title: "",
     description: "",
     emoji: "",
   });
   const [isLoading, setIsLoading] = useState(false);
+
+  const typeDropdownData = [
+    { label: "List", value: "list" },
+    { label: "Grid", value: "grid" },
+  ];
 
   return (
     <SafeAreaView>
@@ -26,7 +31,7 @@ const Create = () => {
             title="Title"
             value={createListForm.title}
             setValue={(value) =>
-              setCreateForm({ ...createListForm, title: value })
+              setCreateListForm({ ...createListForm, title: value })
             }
             containerStyle="mt-4"
           />
@@ -34,7 +39,7 @@ const Create = () => {
             title="Description"
             value={createListForm.description}
             setValue={(value) =>
-              setCreateForm({ ...createListForm, description: value })
+              setCreateListForm({ ...createListForm, description: value })
             }
             containerStyle="mt-4"
           />
@@ -42,7 +47,7 @@ const Create = () => {
             title="Emoji"
             value={createListForm.emoji}
             setValue={(value) =>
-              setCreateForm({ ...createListForm, emoji: value })
+              setCreateListForm({ ...createListForm, emoji: value })
             }
             containerStyle="mt-4"
           />
@@ -50,13 +55,14 @@ const Create = () => {
             title="Type"
             value={createListForm.type}
             setValue={(value) =>
-              setCreateForm({ ...createListForm, type: value })
+              setCreateListForm({ ...createListForm, type: value })
             }
+            data={typeDropdownData}
             containerStyle="mt-4"
           />
           <Button
             onPress={() =>
-              handleCreateList(createListForm, setIsLoading, setCreateForm)
+              handleCreateList(createListForm, setIsLoading, setCreateListForm)
             }
             title="Create List"
             containerStyle="mt-4"

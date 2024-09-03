@@ -6,16 +6,14 @@ const DropDown = ({
   value,
   setValue,
   containerStyle,
+  data,
 }: {
   title: string;
   value: string;
   setValue: (value: string) => any;
   containerStyle?: string;
+  data: { label: string; value: string }[];
 }) => {
-  const data = [
-    { label: "List", value: "list" },
-    { label: "Grid", value: "grid" },
-  ];
   return (
     <View className={containerStyle}>
       {title && <Text className="mb-2">{title}</Text>}

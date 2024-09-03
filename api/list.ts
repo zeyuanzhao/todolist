@@ -6,7 +6,7 @@ import { router } from "expo-router";
 export const handleCreateList = async (
   createListForm: CreateListForm,
   setIsLoading: (value: boolean) => void,
-  setCreateForm: (value: CreateListForm) => void
+  setCreateListForm: (value: CreateListForm) => void
 ) => {
   if (
     createListForm.title === "" ||
@@ -26,7 +26,7 @@ export const handleCreateList = async (
       createListForm.emoji,
       createListForm.type
     );
-    setCreateForm({
+    setCreateListForm({
       title: "",
       description: "",
       emoji: "",
