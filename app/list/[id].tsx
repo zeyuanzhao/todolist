@@ -129,14 +129,16 @@ const ListPage = () => {
               bottomSheet
             />
             <Button
-              onPress={() =>
+              onPress={() => {
                 handleCreateItem(
                   list.id,
                   createItemForm,
                   setIsCreateLoading,
                   setCreateItemForm
-                )
-              }
+                );
+                refetchItems();
+                refetchList();
+              }}
               title="Create Item"
               containerStyle="mt-6"
               isDisabled={isCreateLoading}

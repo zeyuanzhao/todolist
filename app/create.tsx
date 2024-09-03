@@ -3,6 +3,7 @@ import Button from "@/components/Button";
 import DropDown from "@/components/DropDown";
 import TextField from "@/components/TextField";
 import { CreateListForm } from "@/interfaces";
+import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { Text, View } from "react-native";
@@ -26,7 +27,15 @@ const Create = () => {
     <SafeAreaView>
       <View>
         <View className="px-4">
-          <Text className="text-3xl">Create List</Text>
+          <View className="flex flex-row items-center justify-between ">
+            <Text className="text-3xl">Create List</Text>
+            <Button
+              onPress={() => {
+                router.back();
+              }}
+              title={"Close"}
+            />
+          </View>
           <TextField
             title="Title"
             value={createListForm.title}
