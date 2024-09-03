@@ -4,7 +4,14 @@ import useLoader from "@/hooks/useLoader";
 import { Item, List } from "@/interfaces";
 import { populateItems } from "@/utils/populate";
 import { router, useLocalSearchParams } from "expo-router";
-import { FlatList, Pressable, Text, View } from "react-native";
+import {
+  FlatList,
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  Text,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { useRef, useState } from "react";
@@ -43,6 +50,10 @@ const ListPage = () => {
   const typeDropdownData = [{ label: "Text", value: "text" }];
 
   return (
+    // <KeyboardAvoidingView
+    //   behavior={Platform.OS === "ios" ? "padding" : "height"}
+    //   keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
+    // >
     <SafeAreaView>
       <View className="px-4 h-full">
         <View className="flex flex-row justify-between mb-4">
@@ -62,7 +73,7 @@ const ListPage = () => {
             <Text>Refresh</Text>
           </Pressable>
           <Pressable
-            onPress={() => bottomSheetRef.current?.expand()}
+            onPress={() => bottomSheetRef.current?.snapToIndex(0)}
             className="border"
           >
             <Text>Create</Text>
@@ -101,6 +112,8 @@ const ListPage = () => {
             borderStyle: "solid",
             borderWidth: 1,
           }}
+          keyboardBehavior="interactive"
+          keyboardBlurBehavior="restore"
         >
           <BottomSheetView>
             <Text className="text-xl">Add Item</Text>
@@ -120,6 +133,7 @@ const ListPage = () => {
                 setCreateItemForm({ ...createItemForm, content: value })
               }
               containerStyle="mt-2"
+              bottomSheet
             />
             <Button
               onPress={() =>
@@ -137,6 +151,7 @@ const ListPage = () => {
         </BottomSheet>
       </View>
     </SafeAreaView>
+    // </KeyboardAvoidingView>
   );
 };
 
