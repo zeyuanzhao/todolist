@@ -5,11 +5,12 @@ import { List } from "@/interfaces";
 import { populateLists } from "@/utils/populate";
 import { router, useFocusEffect } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
   Pressable,
+  RefreshControl,
   Text,
   View,
 } from "react-native";
@@ -23,6 +24,8 @@ const Index = () => {
   }: { data: List[]; isLoading: boolean; refetch: () => List[] } = useLoader(
     getLists
   );
+
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   useFocusEffect(
     useCallback(() => {
@@ -77,11 +80,21 @@ const Index = () => {
             }}
             className="h-full"
             ListEmptyComponent={
-              isLoading ? (
+              isLoading && !isRefreshing ? (
                 <ActivityIndicator animating={true} />
               ) : (
                 <Text>No lists</Text>
               )
+            }
+            refreshControl={
+              <RefreshControl
+                refreshing={isRefreshing}
+                onRefresh={async () => {
+                  setIsRefreshing(true);
+                  await refetch();
+                  setIsRefreshing(false);
+                }}
+              />
             }
           />
         </View>

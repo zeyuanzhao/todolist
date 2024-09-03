@@ -8,6 +8,9 @@ const useLoader = (f: () => any): ReturnType<typeof f> => {
   const fetchData = async () => {
     setIsLoading(true);
 
+    // artificial delay of 500 ms
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
     try {
       const response = await f();
       setData(response);
