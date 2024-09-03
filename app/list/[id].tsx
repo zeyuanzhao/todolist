@@ -12,6 +12,7 @@ import TextField from "@/components/TextField";
 import DropDown from "@/components/DropDown";
 import Button from "@/components/Button";
 import { handleCreateItem } from "@/api/item";
+import ListInfo from "@/components/ListInfo";
 
 const ListPage = () => {
   const id = Number(useLocalSearchParams().id);
@@ -85,14 +86,7 @@ const ListPage = () => {
           <Text>Loading...</Text>
         ) : (
           <View>
-            <View>
-              <Text>Id: {list.id}</Text>
-              <Text>Title: {list.title}</Text>
-              <Text>Description: {list.description}</Text>
-              <Text>Emoji: {list.emoji}</Text>
-              <Text>Type: {list.type}</Text>
-              <Text>Length: {list.length}</Text>
-            </View>
+            <ListInfo list={list} />
             <View className="mt-4">
               <FlatList
                 data={items}
