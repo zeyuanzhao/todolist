@@ -42,6 +42,11 @@ const ListPage = () => {
 
   const typeDropdownData = [{ label: "Text", value: "text" }];
 
+  const refetch = async () => {
+    refetchList();
+    refetchItems();
+  };
+
   return (
     // <KeyboardAvoidingView
     //   behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -53,13 +58,21 @@ const ListPage = () => {
           <Pressable onPress={() => router.back()} className="border">
             <Text>Back</Text>
           </Pressable>
-          <Pressable onPress={() => populateItems(list.id)} className="border">
+          <Pressable
+            onPress={() => {
+              const populate = async () => {
+                await populateItems(list.id);
+                refetch();
+              };
+              populate();
+            }}
+            className="border"
+          >
             <Text>Populate Items</Text>
           </Pressable>
           <Pressable
             onPress={() => {
-              refetchList();
-              refetchItems();
+              refetch();
             }}
             className="border"
           >
