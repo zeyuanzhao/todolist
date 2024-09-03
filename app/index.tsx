@@ -42,7 +42,16 @@ const Index = () => {
             <Pressable onPress={refetch} className="border">
               <Text>Refresh</Text>
             </Pressable>
-            <Pressable onPress={populateLists} className="border">
+            <Pressable
+              onPress={() => {
+                const populate = async () => {
+                  await populateLists();
+                  refetch();
+                };
+                populate();
+              }}
+              className="border"
+            >
               <Text>Populate Lists</Text>
             </Pressable>
             <Pressable
