@@ -102,7 +102,7 @@ const ListPage = () => {
           snapPoints={["30%"]}
           index={-1}
           backgroundStyle={{
-            backgroundColor: "",
+            backgroundColor: "#f2f2f2",
           }}
           style={{
             paddingHorizontal: 16,
