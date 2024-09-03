@@ -8,6 +8,7 @@ const useLoader = (f: () => any): ReturnType<typeof f> => {
   const fetchData = async () => {
     setIsLoading(true);
 
+    // TODO: DELETE THIS LATER
     // artificial delay of 500 ms
     await new Promise((resolve) => setTimeout(resolve, 500));
 
@@ -23,6 +24,7 @@ const useLoader = (f: () => any): ReturnType<typeof f> => {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { data, isLoading, refetch: fetchData };
