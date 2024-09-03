@@ -78,5 +78,8 @@ export const createItem = async (
 };
 
 export const getItems = async (listId: number): Promise<Item[]> => {
-  return await db.getAllAsync("SELECT * FROM items WHERE listId = ?", listId);
+  return await db.getAllAsync(
+    "SELECT id, listId, type, content, completed, created FROM items WHERE listId = ?",
+    listId
+  );
 };

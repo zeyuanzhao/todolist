@@ -6,6 +6,8 @@ import { populateItems } from "@/utils/populate";
 import { router, useLocalSearchParams } from "expo-router";
 import { FlatList, Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
+import { useRef } from "react";
 
 const ListPage = () => {
   const id = Number(useLocalSearchParams().id);
@@ -25,9 +27,11 @@ const ListPage = () => {
     () => getItems(id)
   );
 
+  const bottomSheetRef = useRef<BottomSheet>(null);
+
   return (
     <SafeAreaView>
-      <View className="px-4">
+      <View className="px-4 h-full">
         <View className="flex flex-row justify-between mb-4">
           <Pressable onPress={() => router.back()} className="border">
             <Text>Back</Text>
@@ -43,6 +47,12 @@ const ListPage = () => {
             className="border"
           >
             <Text>Refresh</Text>
+          </Pressable>
+          <Pressable
+            onPress={() => bottomSheetRef.current?.expand()}
+            className="border"
+          >
+            <Text>Create</Text>
           </Pressable>
         </View>
         {isListLoading || isItemsLoading ? (
@@ -65,6 +75,24 @@ const ListPage = () => {
             </View>
           </View>
         )}
+        <BottomSheet
+          ref={bottomSheetRef}
+          enablePanDownToClose
+          snapPoints={["25%"]}
+          index={-1}
+          backgroundStyle={{
+            backgroundColor: "",
+          }}
+          style={{
+            paddingHorizontal: 16,
+            borderStyle: "solid",
+            borderWidth: 1,
+          }}
+        >
+          <BottomSheetView>
+            <Text>Bottom Sheet Content</Text>
+          </BottomSheetView>
+        </BottomSheet>
       </View>
     </SafeAreaView>
   );

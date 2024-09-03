@@ -1,6 +1,7 @@
 import { setUpDatabase } from "@/api/sql";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect, useState } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -27,14 +28,16 @@ const RootLayout = () => {
   }
 
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="list/[id]" options={{ headerShown: false }} />
-      <Stack.Screen
-        name="create"
-        options={{ headerShown: false, presentation: "modal" }}
-      />
-    </Stack>
+    <GestureHandlerRootView>
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="list/[id]" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="create"
+          options={{ headerShown: false, presentation: "modal" }}
+        />
+      </Stack>
+    </GestureHandlerRootView>
   );
 };
 
