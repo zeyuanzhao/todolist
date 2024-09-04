@@ -1,5 +1,6 @@
 import { handleCreateList } from "@/api/list";
 import Button from "@/components/Button";
+import CharacterSelect from "@/components/CharacterSelect";
 import DropDown from "@/components/DropDown";
 import TextField from "@/components/TextField";
 import { listTypeDropdownData } from "@/constants/Dropdown";
@@ -48,7 +49,15 @@ const Create = () => {
             }
             containerStyle="mt-4"
           />
-          <TextField
+          {/* <TextField
+            title="Emoji"
+            value={createListForm.emoji}
+            setValue={(value) =>
+              setCreateListForm({ ...createListForm, emoji: value })
+            }
+            containerStyle="mt-4"
+          /> */}
+          <CharacterSelect
             title="Emoji"
             value={createListForm.emoji}
             setValue={(value) =>
