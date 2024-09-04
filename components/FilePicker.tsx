@@ -13,13 +13,23 @@ const FilePicker = ({
 }) => {
   return (
     <Pressable
-      className="border w-16 h-16"
+      className="border self-start"
       onPress={async () => {
         const fileResult = await filePicker(type);
         if (fileResult) setFile(fileResult.uri);
       }}
     >
-      <Text>{file}</Text>
+      {file ? (
+        <Image
+          source={{ uri: file }}
+          className="w-16 h-16"
+          resizeMode="contain"
+        />
+      ) : (
+        <View className="w-16 h-16 justify-center items-center">
+          <Text>+</Text>
+        </View>
+      )}
     </Pressable>
   );
 };
