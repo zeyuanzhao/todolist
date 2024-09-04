@@ -2,6 +2,7 @@ import { handleCreateList } from "@/api/list";
 import Button from "@/components/Button";
 import DropDown from "@/components/DropDown";
 import TextField from "@/components/TextField";
+import { listTypeDropdownData } from "@/constants/Dropdown";
 import { CreateListForm } from "@/interfaces";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -17,11 +18,6 @@ const Create = () => {
     emoji: "",
   });
   const [isLoading, setIsLoading] = useState(false);
-
-  const typeDropdownData = [
-    { label: "List", value: "list" },
-    { label: "Grid", value: "grid" },
-  ];
 
   return (
     <SafeAreaView>
@@ -66,7 +62,7 @@ const Create = () => {
             setValue={(value) =>
               setCreateListForm({ ...createListForm, type: value })
             }
-            data={typeDropdownData}
+            data={listTypeDropdownData}
             containerStyle="mt-4"
           />
           <Button

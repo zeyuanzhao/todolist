@@ -13,6 +13,7 @@ import DropDown from "@/components/DropDown";
 import Button from "@/components/Button";
 import { handleCreateItem } from "@/api/item";
 import ListInfo from "@/components/ListInfo";
+import { itemTypeDropdownData } from "@/constants/Dropdown";
 
 const ListPage = () => {
   const id = Number(useLocalSearchParams().id);
@@ -40,8 +41,6 @@ const ListPage = () => {
   });
 
   const [isCreateLoading, setIsCreateLoading] = useState(false);
-
-  const typeDropdownData = [{ label: "Text", value: "text" }];
 
   const refetch = async () => {
     refetchList();
@@ -99,7 +98,7 @@ const ListPage = () => {
         <BottomSheet
           ref={bottomSheetRef}
           enablePanDownToClose
-          snapPoints={["30%"]}
+          snapPoints={["33%"]}
           index={-1}
           backgroundStyle={{
             backgroundColor: "#f2f2f2",
@@ -129,7 +128,7 @@ const ListPage = () => {
                 setCreateItemForm({ ...createItemForm, type: value })
               }
               containerStyle="mt-2"
-              data={typeDropdownData}
+              data={itemTypeDropdownData}
             />
             <TextField
               title="Content"
@@ -152,7 +151,7 @@ const ListPage = () => {
                 refetchList();
               }}
               title="Create Item"
-              containerStyle="mt-6"
+              containerStyle="mt-6 mb-4"
               isDisabled={isCreateLoading}
             />
           </BottomSheetView>
