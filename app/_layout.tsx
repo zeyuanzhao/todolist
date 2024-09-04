@@ -1,4 +1,4 @@
-import { setUpDatabase } from "@/api/sql";
+import { setUpDatabase } from "@/core/sql";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";

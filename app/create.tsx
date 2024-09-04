@@ -1,9 +1,9 @@
-import { handleCreateList } from "@/api/list";
+import { handleCreateList } from "@/core/list";
 import Button from "@/components/Button";
 import CharacterSelect from "@/components/CharacterSelect";
 import DropDown from "@/components/DropDown";
 import TextField from "@/components/TextField";
-import { listTypeDropdownData } from "@/constants/Dropdown";
+import { listTypeDropdownData } from "@/constants/dropdown";
 import { CreateListForm } from "@/interfaces";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";

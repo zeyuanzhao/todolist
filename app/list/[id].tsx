@@ -1,4 +1,4 @@
-import { getItems, getList } from "@/api/sql";
+import { getItems, getList } from "@/core/sql";
 import ItemRow from "@/components/ItemRow";
 import useLoader from "@/hooks/useLoader";
 import { Item, List } from "@/interfaces";
@@ -11,9 +11,12 @@ import { useRef, useState } from "react";
 import TextField from "@/components/TextField";
 import DropDown from "@/components/DropDown";
 import Button from "@/components/Button";
-import { handleCreateItem } from "@/api/item";
+import { handleCreateItem } from "@/core/item";
 import ListInfo from "@/components/ListInfo";
-import { itemTypeDropdownData } from "@/constants/Dropdown";
+import { itemTypeDropdownData } from "@/constants/dropdown";
+import FilePicker from "@/components/FilePicker";
+import { FileType } from "@/interfaces";
+import { fileTypeString } from "@/constants/file";
 
 const ListPage = () => {
   const id = Number(useLocalSearchParams().id);
@@ -106,7 +109,7 @@ const ListPage = () => {
           style={{
             paddingHorizontal: 16,
             borderStyle: "solid",
-            borderTopWidth: 1,
+            borderTopWidth: 0.25,
           }}
           keyboardBehavior="interactive"
           keyboardBlurBehavior="restore"
@@ -130,15 +133,29 @@ const ListPage = () => {
               containerStyle="mt-2"
               data={itemTypeDropdownData}
             />
-            <TextField
-              title="Content"
-              value={createItemForm.content}
-              setValue={(value) =>
-                setCreateItemForm({ ...createItemForm, content: value })
-              }
-              containerStyle="mt-2"
-              bottomSheet
-            />
+            {createItemForm.type === "text" && (
+              <TextField
+                title="Content"
+                value={createItemForm.content}
+                setValue={(value) =>
+                  setCreateItemForm({ ...createItemForm, content: value })
+                }
+                containerStyle="mt-2"
+                bottomSheet
+              />
+            )}
+            {Object.keys(fileTypeString).includes(createItemForm.type) && (
+              <FilePicker
+                type={createItemForm.type}
+                file={createItemForm.content}
+                setFile={(value) =>
+                  setCreateItemForm({
+                    ...createItemForm,
+                    content: value,
+                  })
+                }
+              />
+            )}
             <Button
               onPress={() => {
                 handleCreateItem(
@@ -152,7 +169,7 @@ const ListPage = () => {
               }}
               title="Create Item"
               containerStyle="mt-6 mb-4"
-              isDisabled={isCreateLoading}
+              isDisabled={isCreateLoading || createItemForm.type === ""}
             />
           </BottomSheetView>
         </BottomSheet>

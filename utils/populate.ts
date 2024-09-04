@@ -1,4 +1,4 @@
-import { createItem, createList } from "@/api/sql";
+import { createItem, createList } from "@/core/sql";
 
 export const populateLists = async () => {
   for (let i = 0; i < 5; i++) {

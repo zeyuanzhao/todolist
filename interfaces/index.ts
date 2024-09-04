@@ -1,3 +1,5 @@
+import { fileTypeString } from "@/constants/file";
+
 export interface List {
   id: number;
   title: string;
@@ -27,3 +29,7 @@ export interface CreateItemForm {
   type: string;
   content: string;
 }
+
+// export type FileType = "image" | "audio" | "video" | "document";
+const fileTypes = Object.keys(fileTypeString);
+export type FileType = (typeof fileTypes)[number];

@@ -1,4 +1,4 @@
-import { getLists, resetDatabase } from "@/api/sql";
+import { getLists, resetDatabase } from "@/core/sql";
 import ListCard from "@/components/ListCard";
 import useLoader from "@/hooks/useLoader";
 import { List } from "@/interfaces";
